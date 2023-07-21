@@ -26,11 +26,19 @@ header {
 
 main {
   width: 900px;
+  display: flex;
+  flex-direction: column;
+}
+
+.start-section {
+  text-align: center;
+  margin: 1rem;
 }
 
 .dice-table {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .dice-table .dice {
@@ -38,6 +46,17 @@ main {
 }
 
 .play-button {
+  font-size: 3rem;
+  padding: 2rem;
+  background: none;
+  font-family: inherit;
+  border: solid 0.5rem #212121;
+  cursor: pointer;
+}
+
+.play-button:hover {
+  background-color: #212121;
+  color: #f6f6f6;
 }
 
 footer {
