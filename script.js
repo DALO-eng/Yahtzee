@@ -53,5 +53,3 @@ const throwingPhase = function () {
   }
   alert(`Your dices scores: ${playerDices}`);
 };
-
-throwingPhase();
