@@ -1,5 +1,8 @@
 "use strict";
 
+const dicesEl = document.querySelectorAll(".dice");
+const playBtnEl = document.querySelector(".play-button");
+
 const rollDice = function () {
   return 1 + Math.floor(Math.random() * 6);
 };
@@ -12,44 +15,9 @@ const rollDices = function (n) {
   return dices;
 };
 
-const getNumberFromString = function (selectedDices) {
-  return selectedDices.split(",").map((x) => Number(x));
-};
-
-const checkValidDiceSelection = function (dices, selectedInput) {
-  const dicesRolled = [...dices];
-  console.log(dicesRolled, selectedInput);
-  const selectedDices = [];
-  for (let i = 0; i < selectedInput.length; i++) {
-    if (dicesRolled.includes(selectedInput[i])) {
-      selectedDices.push(selectedInput[i]);
-      dicesRolled.splice(dicesRolled.indexOf(selectedInput[i]), 1);
-    } else {
-      return false;
-    }
-  }
-  return true;
-};
-
-const throwingPhase = function () {
-  let playerDices = [];
-  let dicesLeft = 5;
-  for (let i = 0; i < 3; i++) {
-    let validation = false;
-    const currentDices = rollDices(dicesLeft);
-    while (!validation) {
-      let keepingDices = prompt(
-        `Enter the dices you wanna keep: ${currentDices} \nEx:4,5,6`
-      );
-      const selectedDices = getNumberFromString(keepingDices);
-      if (checkValidDiceSelection(currentDices, selectedDices)) {
-        playerDices = playerDices.concat(selectedDices);
-        dicesLeft -= playerDices.length;
-        validation = true;
-        console.log(playerDices);
-      } else alert("Wrong input! Please try again");
-    }
-    if (playerDices.length === 5) break;
-  }
-  alert(`Your dices scores: ${playerDices}`);
-};
+playBtnEl.addEventListener("click", () => {
+  const dices = rollDices(5);
+  dicesEl.forEach((dice, i) => {
+    dice.src = `./imgs/dice-${dices[i]}.png`;
+  });
+});
