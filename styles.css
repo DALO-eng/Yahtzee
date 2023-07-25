@@ -35,7 +35,7 @@ main {
   margin: 1rem;
 }
 
-.play-button {
+.main-button {
   font-size: 3rem;
   padding: 2rem;
   background: none;
@@ -44,7 +44,7 @@ main {
   cursor: pointer;
 }
 
-.play-button:hover {
+.main-button:hover {
   background-color: #212121;
   color: #f6f6f6;
 }
