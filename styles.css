@@ -35,16 +35,6 @@ main {
   margin: 1rem;
 }
 
-.dice-table {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.dice-table .dice {
-  width: 100px;
-}
-
 .play-button {
   font-size: 3rem;
   padding: 2rem;
@@ -57,6 +47,25 @@ main {
 .play-button:hover {
   background-color: #212121;
   color: #f6f6f6;
+}
+
+.dice-table {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.dice-table .dice {
+  width: 100px;
+}
+
+.rolling-section {
+  text-align: center;
+  margin: 1rem;
+}
+
+.rolling-section p {
+  margin: 1rem;
 }
 
 footer {
