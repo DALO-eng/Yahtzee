@@ -8,11 +8,12 @@ const rollingBtnsEl = document.querySelector(".rolling-section");
 const skipBtnEl = document.getElementById("skip-btn");
 const rerollBtnEl = document.getElementById("reroll-btn");
 
-let playing, rollsLeft;
+let playing, rollsLeft, currentDices;
 
 const beginGame = function () {
   playing = true;
   rollsLeft = 3;
+  currentDices = [];
   playBtnEl.classList.add("hidden");
   diceTableEl.classList.remove("hidden");
   rollingBtnsEl.classList.remove("hidden");
@@ -27,7 +28,7 @@ const rollDices = function (n) {
   for (let i = 0; i < n; i++) {
     dices.push(rollDice());
   }
-  return dices;
+  getDiceImg(dices);
 };
 
 const isDiceUnchecked = function (index) {
@@ -44,22 +45,35 @@ const getDiceImg = function (dices) {
   dicesEl.forEach((dice, i) => {
     if (isDiceUnchecked(i)) {
       dice.src = `./imgs/dice-${dices[currentNewDiceIndex]}.png`;
+      currentDices[i] = dices[currentNewDiceIndex];
       currentNewDiceIndex++;
     }
   });
 };
 
+const checkRollsLeft = function () {
+  if (!rollsLeft) {
+    playing = false;
+    console.log(currentDices);
+  }
+};
+
 playBtnEl.addEventListener("click", () => {
   beginGame();
-  const dices = rollDices(5);
-  getDiceImg(dices);
+  rollDices(5);
 });
 
 rerollBtnEl.addEventListener("click", () => {
-  const dices = rollDices(getUncheckedDicesLength());
-  getDiceImg(dices);
+  if (playing) {
+    rollDices(getUncheckedDicesLength());
+    rollsLeft--;
+    checkRollsLeft();
+  }
 });
 
 skipBtnEl.addEventListener("click", () => {
-  console.log(getUncheckedDicesLength());
+  if (playing) {
+    rollsLeft = 0;
+    checkRollsLeft();
+  }
 });
