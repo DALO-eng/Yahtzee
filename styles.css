@@ -55,6 +55,20 @@ main {
   flex-wrap: wrap;
 }
 
+label {
+  border: 10px solid #d9cab3;
+  padding: 10px;
+  display: block;
+  margin: 10px;
+  cursor: pointer;
+}
+
+:checked + label {
+  border: 10px solid #212121;
+  padding: 10px;
+  margin: 10px;
+}
+
 .dice-table .dice {
   width: 100px;
 }
